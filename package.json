@@ -1,12 +1,14 @@
 {
   "name": "golangviz",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Visual, interactive Golang learning platform (frontend-only, open source).",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "16.0.7",

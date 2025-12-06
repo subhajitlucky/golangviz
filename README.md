@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GolangViz — Visual, Interactive Go Learning (Frontend Only)
 
-## Getting Started
+Open-source, visual-first Golang curriculum inspired by Go by Example, VisualGo, Python Tutor, Roadmap.sh, and Go docs. Everything runs on the frontend; static-export friendly.
 
-First, run the development server:
+## Features (current)
+- Landing with navigation, hero, feature grid, curriculum outline, roadmap.
+- Interactive stubs: memory stepper, channel debugger, scheduler view, slice growth lab.
+- Search bar (client filter), quizzes, cheat-sheets with downloadable PDF placeholder.
+- Dark, minimal UI (Tailwind v4, Next.js App Router, TS).
 
+## Roadmap
+See `ROADMAP.md` for phase status (blue ticks = done, yellow = in progress).
+
+## Getting started
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# visit http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Static export (frontend-only deployment)
+`next.config.ts` is set to `output: "export"` and `images.unoptimized`. Build and export static assets:
+```bash
+npm run build
+npm run export   # outputs to ./out
+```
+Host `./out` on GitHub Pages, Cloudflare Pages, Netlify, or any static host.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
+- `src/app/page.tsx` — main landing + sections.
+- `src/components/*` — UI building blocks (sections, feature grid, hero, nav, etc).
+- `src/components/visualizers/*` — channel debugger, scheduler view, slice growth lab, mini playground.
+- `public/notes.pdf` — placeholder downloadable notes/cheatsheet.
+- `ROADMAP.md` — phased plan with status.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Planned next steps
+- MDX content for Foundation, Memory, Concurrency, Advanced modules.
+- WASM sandbox (tinygo/wasm_exec) with step events for stack/heap/channels/goroutines.
+- Additional visuals: maps/buckets, interfaces (itab/data), struct padding, GC lifecycle.
+- Search backed by static index or edge function; quizzes tied to chapters; contribution guide.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+MIT. Contributions welcome.
