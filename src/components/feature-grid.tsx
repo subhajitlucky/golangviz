@@ -14,14 +14,18 @@ export function FeatureGrid({ features }: FeatureGridProps) {
       {features.map((feature) => (
         <div
           key={feature.title}
-          className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-blue-500/10 transition hover:-translate-y-1 hover:border-white/20"
+          className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10 transition hover:-translate-y-1"
         >
-          <div className="mb-3 flex items-center gap-2 text-sm text-blue-200">
+          <div className="mb-3 flex items-center gap-2 text-sm text-blue-700 dark:text-blue-200">
             <span className="h-2 w-2 rounded-full bg-blue-400" />
             {feature.badge ?? "Interactive"}
           </div>
-          <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
-          <p className="mt-2 text-sm text-slate-300">{feature.description}</p>
+          <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
+            {feature.title}
+          </h3>
+          <p className="mt-2 text-sm text-[color:var(--muted)]">
+            {feature.description}
+          </p>
         </div>
       ))}
     </div>

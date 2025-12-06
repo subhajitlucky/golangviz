@@ -54,15 +54,15 @@ const quizzes: Quiz[] = [
 
 export function QuizCards() {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-amber-500/10">
+    <div className="surface rounded-2xl p-5 shadow-lg shadow-amber-500/10">
       <div className="flex flex-col gap-2">
-        <p className="text-xs uppercase tracking-[0.2em] text-amber-200">
+        <p className="text-xs uppercase tracking-[0.2em] text-amber-700 dark:text-amber-200">
           Quizzes
         </p>
-        <h3 className="text-lg font-semibold text-white">
+        <h3 className="text-lg font-semibold text-[color:var(--foreground)] dark:text-white">
           Quick checks for understanding
         </h3>
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-[color:var(--muted)]">
           Multiple-choice with inline explanations—expand to see why.
         </p>
       </div>
@@ -79,8 +79,10 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
   const [selected, setSelected] = useState<number | null>(null);
   const isCorrect = selected === quiz.answer;
   return (
-    <div className="flex flex-col rounded-xl border border-white/10 bg-black/30 p-4 text-sm text-slate-200">
-      <div className="font-semibold text-white">{quiz.question}</div>
+    <div className="flex flex-col rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--foreground)]">
+      <div className="font-semibold text-[color:var(--foreground)] dark:text-white">
+        {quiz.question}
+      </div>
       <div className="mt-2 space-y-2">
         {quiz.choices.map((choice, idx) => (
           <button
@@ -89,9 +91,9 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
             className={`w-full rounded-lg border px-3 py-2 text-left transition ${
               selected === idx
                 ? idx === quiz.answer
-                  ? "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
-                  : "border-rose-400/40 bg-rose-500/10 text-rose-100"
-                : "border-white/10 hover:border-white/30"
+                  ? "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-emerald-100"
+                  : "border-rose-300 bg-rose-50 text-rose-900 dark:border-rose-400/40 dark:bg-rose-500/10 dark:text-rose-100"
+                : "border-[color:var(--panel-border)] text-[color:var(--foreground)] hover:border-[color:var(--accent)] dark:border-white/10 dark:hover:border-white/30"
             }`}
           >
             {choice}
@@ -102,8 +104,8 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
         <div
           className={`mt-3 rounded-lg border px-3 py-2 text-xs ${
             isCorrect
-              ? "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
-              : "border-amber-400/40 bg-amber-500/10 text-amber-100"
+              ? "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-emerald-100"
+              : "border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-400/40 dark:bg-amber-500/10 dark:text-amber-100"
           }`}
         >
           {quiz.explanation}

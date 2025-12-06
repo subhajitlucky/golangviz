@@ -8,16 +8,18 @@ Status legend: 🟦 Done · 🔄 In Progress · ⬜ Not started
 
 ## Phase 1 — Experience Shell
 - 🟦 Navigation, hero, feature grid, curriculum outline, roadmap sections.
-- 🟦 Dark visual theme and typography reset.
+- 🟦 Dark/Light theme toggle with CSS variables.
+- 🟦 Typography and background pattern using theme tokens.
 
 ## Phase 2 — Visualizer Stubs
 - 🟦 Static mini playground with stepper for stack/heap/channels/goroutines.
 - 🟦 Component primitives for sections, cards, and grids.
 
 ## Phase 3 — Content & Tutorials
-- 🔄 Author MDX-based chapters for Foundation, Memory, Concurrency, Advanced.
+- 🟦 MDX chapters scaffolded (Foundation, Memory, Concurrency, Advanced).
 - 🟦 Quizzes and cheatsheets (initial cards + downloadable PDF placeholder).
-- 🟦 Client-side search bar (static topics); MDX/edge search later.
+- 🟦 Client-side search bar (static topics + curriculum links); MDX/edge search later.
+- 🟦 Content hub page separated from homepage (search/quizzes/downloads/roadmap).
 
 ## Phase 4 — Execution & Instrumentation
 - ⬜ WASM sandbox runner (tinygo/wasm_exec) with step events.
@@ -31,7 +33,9 @@ Status legend: 🟦 Done · 🔄 In Progress · ⬜ Not started
 - ⬜ Maps, interfaces, struct padding, GC lifecycle animations.
 
 ## Phase 6 — Productization
-- ⬜ SEO/meta, sitemap/static export, offline-friendly assets.
+- 🟦 Static export ready (`output: "export"`, `images.unoptimized`).
+- 🟦 Build verified (`npm run build` green).
+- ⬜ SEO/meta, sitemap/static export assets polish.
 - ⬜ Deploy to static hosting (GitHub Pages/Cloudflare Pages/Netlify).
 - ⬜ Optional edge functions for search/telemetry (if needed).
 

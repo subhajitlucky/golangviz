@@ -43,21 +43,21 @@ export function CheatSheets() {
   };
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-emerald-500/10">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+    <div className="surface rounded-2xl p-5 shadow-lg shadow-emerald-500/10">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between text-[color:var(--foreground)]">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">
+          <p className="text-xs uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-200">
             Cheat sheets & Downloads
           </p>
-          <h3 className="text-lg font-semibold text-white">Grab-and-go refs</h3>
-          <p className="text-sm text-slate-300">
+          <h3 className="text-lg font-semibold">Grab-and-go refs</h3>
+          <p className="text-sm text-[color:var(--muted)]">
             Printable PDFs for quick review (placeholder PDF included).
           </p>
         </div>
         <a
           href="/notes.pdf"
           download
-          className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow"
+          className="rounded-full bg-[color:var(--accent)] px-4 py-2 text-sm font-semibold text-white shadow"
         >
           Download sample PDF
         </a>
@@ -66,23 +66,23 @@ export function CheatSheets() {
         {sheets.map((sheet) => (
           <div
             key={sheet.title}
-            className="flex items-center justify-between rounded-xl border border-white/10 bg-black/30 p-4 text-sm text-slate-200"
+            className="flex items-center justify-between rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--foreground)]"
           >
             <div>
-              <div className="text-white">{sheet.title}</div>
-              <p className="text-slate-400">{sheet.summary}</p>
+              <div className="font-semibold">{sheet.title}</div>
+              <p className="text-[color:var(--muted)]">{sheet.summary}</p>
             </div>
             <div className="flex flex-col gap-2 text-xs">
               <a
                 href={sheet.link}
                 download
-                className="rounded-full border border-white/15 px-3 py-2 font-semibold text-white transition hover:border-white/30"
+                className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
               >
                 Download
               </a>
               <button
                 onClick={() => copyLink(sheet.link)}
-                className="rounded-full border border-white/10 px-3 py-2 font-semibold text-white transition hover:border-white/30"
+                className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
               >
                 {copied === sheet.link ? "Copied" : "Copy link"}
               </button>

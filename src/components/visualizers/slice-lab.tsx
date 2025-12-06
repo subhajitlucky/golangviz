@@ -42,14 +42,16 @@ export function SliceLab() {
   };
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-emerald-500/10">
+    <div className="surface rounded-2xl p-5 shadow-lg shadow-emerald-500/10">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-emerald-200">
+          <p className="text-xs uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-200">
             Slices
           </p>
-          <h3 className="text-lg font-semibold text-white">Slice Growth Lab</h3>
-          <p className="text-sm text-slate-300">
+          <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
+            Slice Growth Lab
+          </h3>
+          <p className="text-sm text-[color:var(--muted)]">
             Append elements, watch len/cap, and see when the underlying array
             reallocates (generation changes).
           </p>
@@ -57,13 +59,13 @@ export function SliceLab() {
         <div className="flex gap-2 text-xs">
           <button
             onClick={append}
-            className="rounded-full bg-white px-3 py-2 font-semibold text-slate-900 shadow"
+            className="rounded-full bg-[color:var(--accent)] px-3 py-2 font-semibold text-white shadow"
           >
             Append {nextValue}
           </button>
           <button
             onClick={reset}
-            className="rounded-full border border-white/15 px-3 py-2 font-semibold text-white"
+            className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 font-semibold text-[color:var(--foreground)]"
           >
             Reset
           </button>
@@ -71,10 +73,10 @@ export function SliceLab() {
       </div>
 
       <div className="mt-4 grid gap-4 md:grid-cols-[1.1fr,0.9fr]">
-        <div className="rounded-xl border border-white/10 bg-black/30 p-4 text-sm text-slate-100">
+        <div className="surface-ghost rounded-xl p-4 text-sm text-[color:var(--foreground)]">
           <div className="flex items-center justify-between">
             <span className="font-semibold">Underlying array</span>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-[color:var(--muted)]">
               len={state.values.length} cap={state.cap}
             </span>
           </div>
@@ -84,17 +86,17 @@ export function SliceLab() {
                 key={idx}
                 className={`flex h-14 items-center justify-center rounded-lg border px-3 text-base font-semibold ${
                   Number.isNaN(v)
-                    ? "border-dashed border-white/15 text-slate-600"
-                    : "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
+                    ? "border-dashed border-[color:var(--panel-border)] text-[color:var(--muted)]"
+                    : "border-emerald-400/40 bg-emerald-500/10 text-emerald-900 dark:text-emerald-100"
                 }`}
               >
                 {Number.isNaN(v) ? "·" : v}
               </div>
             ))}
           </div>
-          <p className="mt-3 text-xs text-slate-300">
+          <p className="mt-3 text-xs text-[color:var(--muted)]">
             Generation (pointer identity):{" "}
-            <span className="font-mono text-emerald-200">
+            <span className="font-mono text-emerald-700 dark:text-emerald-200">
               ptr-0x{state.generation.toString(16)}
             </span>{" "}
             {state.generation > 1
@@ -103,12 +105,14 @@ export function SliceLab() {
           </p>
         </div>
 
-        <div className="space-y-3 text-sm text-slate-200">
+        <div className="space-y-3 text-sm text-[color:var(--foreground)]">
           <InfoRow label="len" value={state.values.length} />
           <InfoRow label="cap" value={state.cap} />
           <InfoRow label="next append" value={nextValue} />
-          <div className="rounded-xl border border-white/10 bg-black/40 p-3 text-xs text-slate-300">
-            <p className="font-semibold text-white">Notes</p>
+          <div className="surface-ghost rounded-xl p-3 text-xs text-[color:var(--muted)]">
+            <p className="font-semibold text-[color:var(--foreground)]">
+              Notes
+            </p>
             <ul className="mt-2 space-y-1">
               <li>• len grows with each append.</li>
               <li>• cap doubles when len exceeds cap (simplified heuristic).</li>
@@ -124,9 +128,9 @@ export function SliceLab() {
 
 function InfoRow({ label, value }: { label: string; value: number }) {
   return (
-    <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs">
-      <span className="text-slate-300">{label}</span>
-      <span className="font-mono text-white">{value}</span>
+    <div className="flex items-center justify-between rounded-lg border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--foreground)]">
+      <span className="text-[color:var(--muted)]">{label}</span>
+      <span className="font-mono">{value}</span>
     </div>
   );
 }

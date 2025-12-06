@@ -96,16 +96,16 @@ export function ChannelVisualizer() {
   }, [buffer, capacity, mode]);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-blue-500/10">
-      <div className="flex items-center justify-between">
+    <div className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10">
+      <div className="flex items-center justify-between text-[color:var(--foreground)]">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-blue-200">
+          <p className="text-xs uppercase tracking-[0.2em] text-blue-700 dark:text-blue-200">
             Channels
           </p>
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg font-semibold">
             Send/Receive Visual Debugger
           </h3>
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-[color:var(--muted)]">
             See buffered vs unbuffered behavior, blocking, and readiness.
           </p>
         </div>
@@ -114,8 +114,8 @@ export function ChannelVisualizer() {
             onClick={() => setMode("buffered")}
             className={`rounded-full px-3 py-1 font-semibold transition ${
               mode === "buffered"
-                ? "bg-white text-slate-900"
-                : "border border-white/15 text-white"
+                ? "bg-[color:var(--accent)] text-white"
+                : "border border-[color:var(--panel-border)] text-[color:var(--foreground)]"
             }`}
           >
             Buffered
@@ -124,8 +124,8 @@ export function ChannelVisualizer() {
             onClick={() => setMode("unbuffered")}
             className={`rounded-full px-3 py-1 font-semibold transition ${
               mode === "unbuffered"
-                ? "bg-white text-slate-900"
-                : "border border-white/15 text-white"
+                ? "bg-[color:var(--accent)] text-white"
+                : "border border-[color:var(--panel-border)] text-[color:var(--foreground)]"
             }`}
           >
             Unbuffered
@@ -134,7 +134,7 @@ export function ChannelVisualizer() {
       </div>
 
       {mode === "buffered" ? (
-        <div className="mt-4 flex items-center gap-2 text-sm text-slate-300">
+        <div className="mt-4 flex items-center gap-2 text-sm text-[color:var(--muted)]">
           <span>Capacity</span>
           {[1, 2, 4, 8].map((cap) => (
             <button
@@ -145,8 +145,8 @@ export function ChannelVisualizer() {
               }}
               className={`rounded-md px-3 py-1 text-xs font-semibold transition ${
                 capacity === cap
-                  ? "bg-white text-slate-900"
-                  : "border border-white/15 text-white"
+                  ? "bg-[color:var(--accent)] text-white"
+                  : "border border-[color:var(--panel-border)] text-[color:var(--foreground)]"
               }`}
             >
               {cap}
@@ -154,29 +154,29 @@ export function ChannelVisualizer() {
           ))}
         </div>
       ) : (
-        <p className="mt-4 text-sm text-slate-300">
+        <p className="mt-4 text-sm text-[color:var(--muted)]">
           Unbuffered: send blocks until a receiver is armed.
         </p>
       )}
 
       <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr,0.8fr]">
-        <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-          <div className="flex items-center justify-between text-sm text-slate-200">
+        <div className="surface-ghost rounded-xl p-4">
+          <div className="flex items-center justify-between text-sm text-[color:var(--foreground)]">
             <span className="font-semibold">Channel State</span>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-[color:var(--muted)]">
               {mode === "buffered"
                 ? `len=${buffer.length} cap=${capacity}`
                 : "unbuffered"}
             </span>
           </div>
-          <div className="mt-3 grid grid-cols-4 gap-2 text-center text-sm text-slate-100">
+          <div className="mt-3 grid grid-cols-4 gap-2 text-center text-sm text-[color:var(--foreground)]">
             {bufferSlots.map((slot, idx) => (
               <div
                 key={idx}
                 className={`rounded-lg border px-3 py-4 ${
                   slot === "·"
-                    ? "border-dashed border-white/15 text-slate-500"
-                    : "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
+                    ? "border-dashed border-[color:var(--panel-border)] text-[color:var(--muted)]"
+                    : "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-emerald-100"
                 }`}
               >
                 {slot}
@@ -184,7 +184,7 @@ export function ChannelVisualizer() {
             ))}
           </div>
           {mode === "unbuffered" ? (
-            <div className="mt-3 rounded-lg border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
+            <div className="mt-3 rounded-lg border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-800 dark:text-amber-100">
               Receiver {armedReceiver ? "armed" : "not waiting"}; send will{" "}
               {armedReceiver ? "succeed" : "block"}.
             </div>
@@ -195,13 +195,13 @@ export function ChannelVisualizer() {
           <div className="flex gap-2">
             <button
               onClick={send}
-              className="flex-1 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-md shadow-blue-500/20 transition hover:-translate-y-0.5"
+              className="flex-1 rounded-full bg-[color:var(--accent)] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition hover:-translate-y-0.5"
             >
               Send
             </button>
             <button
               onClick={receive}
-              className="flex-1 rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/30"
+              className="flex-1 rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
             >
               Receive / Arm
             </button>
@@ -211,16 +211,16 @@ export function ChannelVisualizer() {
                 setEvents([]);
                 setArmedReceiver(false);
               }}
-              className="rounded-full border border-white/10 px-3 py-2 text-xs text-slate-200 transition hover:border-white/30"
+              className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 text-xs text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
             >
               Reset
             </button>
           </div>
-          <div className="rounded-xl border border-white/10 bg-black/30 p-3 text-xs text-slate-100">
-            <div className="mb-2 font-semibold text-slate-200">Events</div>
+          <div className="surface-ghost rounded-xl p-3 text-xs text-[color:var(--foreground)]">
+            <div className="mb-2 font-semibold">Events</div>
             <div className="space-y-2">
               {events.length === 0 ? (
-                <div className="rounded-md border border-white/5 bg-white/5 px-3 py-2 text-slate-500">
+                <div className="rounded-md border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-[color:var(--muted)]">
                   No events yet.
                 </div>
               ) : (
@@ -229,10 +229,10 @@ export function ChannelVisualizer() {
                     key={e.id}
                     className={`rounded-md border px-3 py-2 ${
                       e.type === "send"
-                        ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-100"
+                        ? "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-400/30 dark:bg-emerald-500/10 dark:text-emerald-100"
                         : e.type === "receive"
-                          ? "border-blue-400/30 bg-blue-500/10 text-blue-100"
-                          : "border-amber-400/30 bg-amber-500/10 text-amber-100"
+                          ? "border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-400/30 dark:bg-blue-500/10 dark:text-blue-100"
+                          : "border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-400/30 dark:bg-amber-500/10 dark:text-amber-100"
                     }`}
                   >
                     <div className="flex items-center justify-between">

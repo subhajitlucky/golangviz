@@ -2,82 +2,79 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { ThemeToggle } from "./theme-toggle";
 
 const links = [
-  { href: "#features", label: "Core Features" },
-  { href: "#visualizers", label: "Visualizers" },
-  { href: "#curriculum", label: "Curriculum" },
-  { href: "#roadmap", label: "Roadmap" },
-  { href: "#playground", label: "Playground" },
+  { href: "/", label: "Home", scope: "home" },
+  { href: "/playground", label: "Playground", scope: "content" },
+  { href: "/path", label: "Concepts", scope: "content" },
 ];
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
-  const filteredLinks = useMemo(
-    () => links.map((link) => ({ ...link })),
-    [],
-  );
+  const filteredLinks = useMemo(() => links.map((link) => ({ ...link })), []);
 
   return (
-    <header className="sticky top-0 z-30 backdrop-blur border-b border-white/5 bg-slate-950/70">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-semibold tracking-tight"
-        >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300 shadow-lg shadow-blue-500/20">
+    <header className="sticky top-0 z-40 border-b border-[color:var(--panel-border)] bg-[color:var(--background)]/90 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <Link href="/" className="flex items-center gap-2 text-base font-semibold tracking-tight text-[color:var(--foreground)]">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[color:var(--panel-border)] bg-[color:var(--panel)] text-[color:var(--foreground)]">
             Go
           </span>
-          <span>GolangViz</span>
+          <span className="text-[color:var(--foreground)]">GolangViz</span>
         </Link>
-        <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
+        <nav className="hidden items-center gap-3 text-sm text-[color:var(--foreground)] md:flex">
           {filteredLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="transition hover:text-white"
+              className="rounded-md px-3 py-2 font-medium text-[color:var(--foreground)]/80 transition hover:text-[color:var(--foreground)] hover:bg-[color:var(--panel)] hover:border hover:border-[color:var(--panel-border)]"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
+          <ThemeToggle />
           <a
             href="https://github.com/"
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-white text-slate-900 px-4 py-2 text-sm font-semibold shadow-sm transition hover:translate-y-0.5 hover:shadow-lg"
+            className="rounded-md border border-[color:var(--panel-border)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:bg-[color:var(--panel)]"
           >
-            View on GitHub
+            GitHub
           </a>
         </nav>
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden rounded-lg border border-white/10 px-3 py-2 text-sm text-slate-200"
+          className="md:hidden rounded-md border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-sm font-semibold text-[color:var(--foreground)]"
         >
           {open ? "Close" : "Menu"}
         </button>
       </div>
       {open ? (
-        <div className="border-t border-white/5 bg-slate-900/90 px-6 pb-4 pt-2 text-sm text-slate-200 md:hidden">
-          <div className="flex flex-col gap-3">
+        <div className="border-t border-[color:var(--panel-border)] bg-[color:var(--background)]/95 px-4 pb-4 pt-2 text-sm text-[color:var(--foreground)] md:hidden">
+          <div className="flex flex-col gap-2">
             {filteredLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-2 py-2 transition hover:bg-white/5"
+                className="rounded-md px-3 py-2 transition hover:bg-[color:var(--panel)]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-md bg-white text-center text-slate-900 px-3 py-2 font-semibold shadow-sm transition hover:bg-slate-100"
-              onClick={() => setOpen(false)}
-            >
-              View on GitHub
-            </a>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 rounded-md border border-[color:var(--panel-border)] px-3 py-2 text-center font-semibold text-[color:var(--foreground)] transition hover:bg-[color:var(--panel)]"
+                onClick={() => setOpen(false)}
+              >
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
       ) : null}

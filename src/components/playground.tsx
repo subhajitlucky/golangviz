@@ -76,21 +76,21 @@ export function Playground() {
   const current = useMemo(() => sampleSteps[stepIndex], [stepIndex]);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-blue-500/10">
+    <div className="surface rounded-2xl p-6 shadow-xl shadow-blue-500/10">
       <div className="flex flex-col gap-4 md:flex-row md:items-start">
-        <div className="flex-1 space-y-3">
-          <div className="flex items-center justify-between text-sm text-slate-200">
+        <div className="flex-1 space-y-3 text-[color:var(--foreground)]">
+          <div className="flex items-center justify-between text-sm">
             <span className="font-semibold">Mini Playground (static demo)</span>
-            <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
+            <span className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-1 text-xs text-[color:var(--muted)]">
               Step {stepIndex + 1} / {sampleSteps.length}
             </span>
           </div>
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="h-40 w-full rounded-xl border border-white/10 bg-black/40 p-3 font-mono text-sm text-slate-100 shadow-inner focus:border-blue-400 focus:outline-none"
+            className="h-40 w-full rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-3 font-mono text-sm text-[color:var(--foreground)] shadow-inner focus:border-blue-400 focus:outline-none"
           />
-          <div className="flex items-center gap-2 text-xs text-slate-300">
+          <div className="flex items-center gap-2 text-xs text-[color:var(--muted)]">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Live execution & memory view will run in-browser (WASM) in the full
             build. This static demo shows the UX.
@@ -98,7 +98,7 @@ export function Playground() {
           <div className="flex gap-3">
             <button
               onClick={() => setStepIndex((i) => Math.max(0, i - 1))}
-              className="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/30 disabled:cursor-not-allowed disabled:border-white/5 disabled:text-slate-500"
+              className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] disabled:cursor-not-allowed disabled:border-[color:var(--panel-border)] disabled:opacity-50"
               disabled={stepIndex === 0}
             >
               Prev
@@ -107,18 +107,20 @@ export function Playground() {
               onClick={() =>
                 setStepIndex((i) => Math.min(sampleSteps.length - 1, i + 1))
               }
-              className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-white/50 disabled:text-slate-500"
+              className="rounded-full bg-[color:var(--accent)] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={stepIndex === sampleSteps.length - 1}
             >
               Next
             </button>
           </div>
-          <div className="rounded-xl border border-white/10 bg-black/40 p-4 text-sm text-slate-100">
-            <div className="font-mono text-xs text-blue-100">{current.line}</div>
-            <p className="mt-2 text-slate-200">{current.note}</p>
+          <div className="surface-ghost rounded-xl p-4 text-sm text-[color:var(--foreground)]">
+            <div className="font-mono text-xs text-blue-700 dark:text-blue-100">
+              {current.line}
+            </div>
+            <p className="mt-2 text-[color:var(--muted)]">{current.note}</p>
           </div>
         </div>
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-4 text-[color:var(--foreground)]">
           <MemoryPanel title="Stack" cells={current.stack} accent="blue" />
           <MemoryPanel title="Heap" cells={current.heap} accent="emerald" />
           <MemoryPanel
@@ -147,22 +149,26 @@ function MemoryPanel({
   accent: "blue" | "emerald" | "amber" | "violet";
 }) {
   const accentColor: Record<typeof accent, string> = {
-    blue: "border-blue-400/40 bg-blue-500/5 text-blue-100",
-    emerald: "border-emerald-400/40 bg-emerald-500/5 text-emerald-100",
-    amber: "border-amber-400/40 bg-amber-500/5 text-amber-100",
-    violet: "border-violet-400/40 bg-violet-500/5 text-violet-100",
+    blue:
+      "border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-400/40 dark:bg-blue-500/5 dark:text-blue-100",
+    emerald:
+      "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-500/5 dark:text-emerald-100",
+    amber:
+      "border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-400/40 dark:bg-amber-500/5 dark:text-amber-100",
+    violet:
+      "border-violet-200 bg-violet-50 text-violet-900 dark:border-violet-400/40 dark:bg-violet-500/5 dark:text-violet-100",
   };
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <div className="flex items-center justify-between text-sm text-slate-200">
+    <div className="surface-ghost rounded-xl p-4">
+      <div className="flex items-center justify-between text-sm text-[color:var(--foreground)]">
         <span className="font-semibold">{title}</span>
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-[color:var(--muted)]">
           {cells.length ? `${cells.length} entries` : "empty"}
         </span>
       </div>
       {cells.length === 0 ? (
-        <div className="mt-3 rounded-lg border border-white/5 bg-black/30 px-3 py-2 text-xs text-slate-500">
+        <div className="mt-3 rounded-lg border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--muted)]">
           No allocations yet.
         </div>
       ) : (
@@ -171,7 +177,7 @@ function MemoryPanel({
             <div
               key={`${title}-${cell.label}-${cell.value}`}
               className={`flex items-center justify-between rounded-lg border px-3 py-2 text-sm shadow-sm ${accentColor[accent]} ${
-                cell.emphasis ? "ring-2 ring-white/30" : ""
+                cell.emphasis ? "ring-2 ring-[color:var(--accent)]/30" : ""
               }`}
             >
               <span className="font-semibold">{cell.label}</span>

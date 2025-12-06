@@ -7,21 +7,23 @@ type RoadmapItem = {
 export function Roadmap({ items }: { items: RoadmapItem[] }) {
   return (
     <div className="relative">
-      <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-blue-400/40 via-white/10 to-transparent" />
+      <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-blue-400/40 via-[color:var(--panel-border)] to-transparent" />
       <div className="space-y-8">
         {items.map((item, idx) => (
           <div key={item.title} className="relative pl-12">
-            <div className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm text-slate-200">
+            <div className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-[color:var(--panel-border)] bg-[color:var(--panel)] text-sm text-[color:var(--foreground)]">
               {idx + 1}
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-blue-500/10">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                <span className="text-xs uppercase tracking-wide text-blue-200">
+            <div className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10">
+              <div className="flex items-center justify-between text-[color:var(--foreground)]">
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <span className="text-xs uppercase tracking-wide text-blue-700 dark:text-blue-200">
                   {item.time}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-slate-300">{item.description}</p>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">
+                {item.description}
+              </p>
             </div>
           </div>
         ))}

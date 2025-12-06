@@ -5,8 +5,9 @@ Open-source, visual-first Golang curriculum inspired by Go by Example, VisualGo,
 ## Features (current)
 - Landing with navigation, hero, feature grid, curriculum outline, roadmap.
 - Interactive stubs: memory stepper, channel debugger, scheduler view, slice growth lab.
+- MDX curriculum pages (foundation, memory, concurrency, advanced) with callouts.
 - Search bar (client filter), quizzes, cheat-sheets with downloadable PDF placeholder.
-- Dark, minimal UI (Tailwind v4, Next.js App Router, TS).
+- Dark/Light toggle, minimal UI (Tailwind v4, Next.js App Router, TS).
 
 ## Roadmap
 See `ROADMAP.md` for phase status (blue ticks = done, yellow = in progress).
@@ -28,13 +29,16 @@ Host `./out` on GitHub Pages, Cloudflare Pages, Netlify, or any static host.
 
 ## Project structure
 - `src/app/page.tsx` — main landing + sections.
+- `src/app/curriculum/*` — MDX lessons and index.
+- `src/app/content/page.tsx` — content hub (curriculum overview, search, quizzes, downloads, roadmap).
+- `src/mdx-components.tsx` + `src/components/mdx/*` — MDX component mappings (Callout, typography).
 - `src/components/*` — UI building blocks (sections, feature grid, hero, nav, etc).
 - `src/components/visualizers/*` — channel debugger, scheduler view, slice growth lab, mini playground.
 - `public/notes.pdf` — placeholder downloadable notes/cheatsheet.
 - `ROADMAP.md` — phased plan with status.
 
 ## Planned next steps
-- MDX content for Foundation, Memory, Concurrency, Advanced modules.
+- Flesh out MDX lessons with diagrams and embed live labs.
 - WASM sandbox (tinygo/wasm_exec) with step events for stack/heap/channels/goroutines.
 - Additional visuals: maps/buckets, interfaces (itab/data), struct padding, GC lifecycle.
 - Search backed by static index or edge function; quizzes tied to chapters; contribution guide.
