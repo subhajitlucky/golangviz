@@ -18,9 +18,6 @@ export function Navigation() {
     <header className="sticky top-0 z-40 border-b border-[var(--panel-border)] bg-[color-mix(in srgb, var(--background) 90%, transparent)] backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-base font-semibold tracking-tight text-[var(--foreground)]">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--panel-border)] bg-[var(--panel)] text-[var(--foreground)]">
-            Go
-          </span>
           <span className="text-[var(--foreground)]">GolangViz</span>
         </Link>
         <nav className="hidden items-center gap-3 text-sm text-[var(--foreground)] md:flex">
