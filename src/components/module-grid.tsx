@@ -24,7 +24,7 @@ export function ModuleGrid({ modules }: { modules: Module[] }) {
           className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10"
         >
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
+            <h3 className="text-lg font-semibold text-[var(--foreground)]">
               {module.title}
             </h3>
             <span
@@ -33,11 +33,11 @@ export function ModuleGrid({ modules }: { modules: Module[] }) {
               {module.level}
             </span>
           </div>
-          <ul className="space-y-2 text-sm text-[color:var(--foreground)]">
+          <ul className="space-y-2 text-sm text-[var(--foreground)]">
             {module.items.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-2 rounded-lg border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2"
+                className="flex items-start gap-2 rounded-lg border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2"
               >
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-white/80" />
                 <span>{item}</span>

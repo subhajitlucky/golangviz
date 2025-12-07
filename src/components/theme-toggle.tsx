@@ -34,7 +34,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label="Toggle theme"
       aria-pressed={theme === "dark"}
-      className="inline-flex items-center gap-2 rounded-full border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-xs font-semibold text-[color:var(--foreground)] shadow-sm backdrop-blur transition hover:border-[color:var(--accent)]"
+      className="inline-flex items-center gap-2 rounded-full border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2 text-xs font-semibold text-[var(--foreground)] shadow-sm backdrop-blur transition hover:border-[var(--accent)]"
     >
       {theme === "dark" ? <SunIcon /> : <MoonIcon />}
       <span>{theme === "dark" ? "Dark" : "Light"}</span>

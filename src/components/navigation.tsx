@@ -15,20 +15,20 @@ export function Navigation() {
   const filteredLinks = useMemo(() => links.map((link) => ({ ...link })), []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[color:var(--panel-border)] bg-[color:var(--background)]/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[var(--panel-border)] bg-[color-mix(in srgb, var(--background) 90%, transparent)] backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 text-base font-semibold tracking-tight text-[color:var(--foreground)]">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[color:var(--panel-border)] bg-[color:var(--panel)] text-[color:var(--foreground)]">
+        <Link href="/" className="flex items-center gap-2 text-base font-semibold tracking-tight text-[var(--foreground)]">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--panel-border)] bg-[var(--panel)] text-[var(--foreground)]">
             Go
           </span>
-          <span className="text-[color:var(--foreground)]">GolangViz</span>
+          <span className="text-[var(--foreground)]">GolangViz</span>
         </Link>
-        <nav className="hidden items-center gap-3 text-sm text-[color:var(--foreground)] md:flex">
+        <nav className="hidden items-center gap-3 text-sm text-[var(--foreground)] md:flex">
           {filteredLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-md px-3 py-2 font-medium text-[color:var(--foreground)]/80 transition hover:text-[color:var(--foreground)] hover:bg-[color:var(--panel)] hover:border hover:border-[color:var(--panel-border)]"
+              className="rounded-md px-3 py-2 font-medium text-[var(--foreground)] opacity-80 transition hover:opacity-100 hover:text-[var(--foreground)] hover:bg-[var(--panel)] hover:border hover:border-[var(--panel-border)]"
             >
               {link.label}
             </Link>
@@ -38,26 +38,26 @@ export function Navigation() {
             href="https://github.com/"
             target="_blank"
             rel="noreferrer"
-            className="rounded-md border border-[color:var(--panel-border)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:bg-[color:var(--panel)]"
+            className="rounded-md border border-[var(--panel-border)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--panel)]"
           >
             GitHub
           </a>
         </nav>
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="md:hidden rounded-md border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-sm font-semibold text-[color:var(--foreground)]"
+          className="md:hidden rounded-md border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2 text-sm font-semibold text-[var(--foreground)]"
         >
           {open ? "Close" : "Menu"}
         </button>
       </div>
       {open ? (
-        <div className="border-t border-[color:var(--panel-border)] bg-[color:var(--background)]/95 px-4 pb-4 pt-2 text-sm text-[color:var(--foreground)] md:hidden">
+        <div className="border-t border-[var(--panel-border)] bg-[color-mix(in srgb, var(--background) 95%, transparent)] px-4 pb-4 pt-2 text-sm text-[var(--foreground)] md:hidden">
           <div className="flex flex-col gap-2">
             {filteredLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-3 py-2 transition hover:bg-[color:var(--panel)]"
+                className="rounded-md px-3 py-2 transition hover:bg-[var(--panel)]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -69,7 +69,7 @@ export function Navigation() {
                 href="https://github.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 rounded-md border border-[color:var(--panel-border)] px-3 py-2 text-center font-semibold text-[color:var(--foreground)] transition hover:bg-[color:var(--panel)]"
+                className="flex-1 rounded-md border border-[var(--panel-border)] px-3 py-2 text-center font-semibold text-[var(--foreground)] transition hover:bg-[var(--panel)]"
                 onClick={() => setOpen(false)}
               >
                 GitHub

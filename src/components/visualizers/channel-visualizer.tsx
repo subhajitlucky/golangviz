@@ -97,7 +97,7 @@ export function ChannelVisualizer() {
 
   return (
     <div className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10">
-      <div className="flex items-center justify-between text-[color:var(--foreground)]">
+      <div className="flex items-center justify-between text-[var(--foreground)]">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-blue-700 dark:text-blue-200">
             Channels
@@ -105,7 +105,7 @@ export function ChannelVisualizer() {
           <h3 className="text-lg font-semibold">
             Send/Receive Visual Debugger
           </h3>
-          <p className="text-sm text-[color:var(--muted)]">
+          <p className="text-sm text-[var(--muted)]">
             See buffered vs unbuffered behavior, blocking, and readiness.
           </p>
         </div>
@@ -114,8 +114,8 @@ export function ChannelVisualizer() {
             onClick={() => setMode("buffered")}
             className={`rounded-full px-3 py-1 font-semibold transition ${
               mode === "buffered"
-                ? "bg-[color:var(--accent)] text-white"
-                : "border border-[color:var(--panel-border)] text-[color:var(--foreground)]"
+                ? "bg-[var(--accent)] text-white"
+                : "border border-[var(--panel-border)] text-[var(--foreground)]"
             }`}
           >
             Buffered
@@ -124,8 +124,8 @@ export function ChannelVisualizer() {
             onClick={() => setMode("unbuffered")}
             className={`rounded-full px-3 py-1 font-semibold transition ${
               mode === "unbuffered"
-                ? "bg-[color:var(--accent)] text-white"
-                : "border border-[color:var(--panel-border)] text-[color:var(--foreground)]"
+                ? "bg-[var(--accent)] text-white"
+                : "border border-[var(--panel-border)] text-[var(--foreground)]"
             }`}
           >
             Unbuffered
@@ -134,7 +134,7 @@ export function ChannelVisualizer() {
       </div>
 
       {mode === "buffered" ? (
-        <div className="mt-4 flex items-center gap-2 text-sm text-[color:var(--muted)]">
+        <div className="mt-4 flex items-center gap-2 text-sm text-[var(--muted)]">
           <span>Capacity</span>
           {[1, 2, 4, 8].map((cap) => (
             <button
@@ -145,8 +145,8 @@ export function ChannelVisualizer() {
               }}
               className={`rounded-md px-3 py-1 text-xs font-semibold transition ${
                 capacity === cap
-                  ? "bg-[color:var(--accent)] text-white"
-                  : "border border-[color:var(--panel-border)] text-[color:var(--foreground)]"
+                  ? "bg-[var(--accent)] text-white"
+                  : "border border-[var(--panel-border)] text-[var(--foreground)]"
               }`}
             >
               {cap}
@@ -154,28 +154,28 @@ export function ChannelVisualizer() {
           ))}
         </div>
       ) : (
-        <p className="mt-4 text-sm text-[color:var(--muted)]">
+        <p className="mt-4 text-sm text-[var(--muted)]">
           Unbuffered: send blocks until a receiver is armed.
         </p>
       )}
 
       <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr,0.8fr]">
         <div className="surface-ghost rounded-xl p-4">
-          <div className="flex items-center justify-between text-sm text-[color:var(--foreground)]">
+          <div className="flex items-center justify-between text-sm text-[var(--foreground)]">
             <span className="font-semibold">Channel State</span>
-            <span className="text-xs text-[color:var(--muted)]">
+            <span className="text-xs text-[var(--muted)]">
               {mode === "buffered"
                 ? `len=${buffer.length} cap=${capacity}`
                 : "unbuffered"}
             </span>
           </div>
-          <div className="mt-3 grid grid-cols-4 gap-2 text-center text-sm text-[color:var(--foreground)]">
+          <div className="mt-3 grid grid-cols-4 gap-2 text-center text-sm text-[var(--foreground)]">
             {bufferSlots.map((slot, idx) => (
               <div
                 key={idx}
                 className={`rounded-lg border px-3 py-4 ${
                   slot === "·"
-                    ? "border-dashed border-[color:var(--panel-border)] text-[color:var(--muted)]"
+                    ? "border-dashed border-[var(--panel-border)] text-[var(--muted)]"
                     : "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-emerald-100"
                 }`}
               >
@@ -195,13 +195,13 @@ export function ChannelVisualizer() {
           <div className="flex gap-2">
             <button
               onClick={send}
-              className="flex-1 rounded-full bg-[color:var(--accent)] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition hover:-translate-y-0.5"
+              className="flex-1 rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition hover:-translate-y-0.5"
             >
               Send
             </button>
             <button
               onClick={receive}
-              className="flex-1 rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
+              className="flex-1 rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)]"
             >
               Receive / Arm
             </button>
@@ -211,16 +211,16 @@ export function ChannelVisualizer() {
                 setEvents([]);
                 setArmedReceiver(false);
               }}
-              className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 text-xs text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
+              className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-3 py-2 text-xs text-[var(--foreground)] transition hover:border-[var(--accent)]"
             >
               Reset
             </button>
           </div>
-          <div className="surface-ghost rounded-xl p-3 text-xs text-[color:var(--foreground)]">
+          <div className="surface-ghost rounded-xl p-3 text-xs text-[var(--foreground)]">
             <div className="mb-2 font-semibold">Events</div>
             <div className="space-y-2">
               {events.length === 0 ? (
-                <div className="rounded-md border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-[color:var(--muted)]">
+                <div className="rounded-md border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2 text-[var(--muted)]">
                   No events yet.
                 </div>
               ) : (

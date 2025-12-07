@@ -59,10 +59,10 @@ export function QuizCards() {
         <p className="text-xs uppercase tracking-[0.2em] text-amber-700 dark:text-amber-200">
           Quizzes
         </p>
-        <h3 className="text-lg font-semibold text-[color:var(--foreground)] dark:text-white">
+        <h3 className="text-lg font-semibold text-[var(--foreground)] dark:text-white">
           Quick checks for understanding
         </h3>
-        <p className="text-sm text-[color:var(--muted)]">
+        <p className="text-sm text-[var(--muted)]">
           Multiple-choice with inline explanations—expand to see why.
         </p>
       </div>
@@ -79,8 +79,8 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
   const [selected, setSelected] = useState<number | null>(null);
   const isCorrect = selected === quiz.answer;
   return (
-    <div className="flex flex-col rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--foreground)]">
-      <div className="font-semibold text-[color:var(--foreground)] dark:text-white">
+    <div className="flex flex-col rounded-xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 text-sm text-[var(--foreground)]">
+      <div className="font-semibold text-[var(--foreground)] dark:text-white">
         {quiz.question}
       </div>
       <div className="mt-2 space-y-2">
@@ -93,7 +93,7 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
                 ? idx === quiz.answer
                   ? "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-emerald-100"
                   : "border-rose-300 bg-rose-50 text-rose-900 dark:border-rose-400/40 dark:bg-rose-500/10 dark:text-rose-100"
-                : "border-[color:var(--panel-border)] text-[color:var(--foreground)] hover:border-[color:var(--accent)] dark:border-white/10 dark:hover:border-white/30"
+                : "border-[var(--panel-border)] text-[var(--foreground)] hover:border-[var(--accent)] dark:border-white/10 dark:hover:border-white/30"
             }`}
           >
             {choice}

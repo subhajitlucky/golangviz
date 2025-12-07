@@ -78,19 +78,19 @@ export function Playground() {
   return (
     <div className="surface rounded-2xl p-6 shadow-xl shadow-blue-500/10">
       <div className="flex flex-col gap-4 md:flex-row md:items-start">
-        <div className="flex-1 space-y-3 text-[color:var(--foreground)]">
+        <div className="flex-1 space-y-3 text-[var(--foreground)]">
           <div className="flex items-center justify-between text-sm">
             <span className="font-semibold">Mini Playground (static demo)</span>
-            <span className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-1 text-xs text-[color:var(--muted)]">
+            <span className="rounded-full border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-1 text-xs text-[var(--muted)]">
               Step {stepIndex + 1} / {sampleSteps.length}
             </span>
           </div>
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="h-40 w-full rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-3 font-mono text-sm text-[color:var(--foreground)] shadow-inner focus:border-blue-400 focus:outline-none"
+            className="h-40 w-full rounded-xl border border-[var(--panel-border)] bg-[var(--panel)] p-3 font-mono text-sm text-[var(--foreground)] shadow-inner focus:border-blue-400 focus:outline-none"
           />
-          <div className="flex items-center gap-2 text-xs text-[color:var(--muted)]">
+          <div className="flex items-center gap-2 text-xs text-[var(--muted)]">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Live execution & memory view will run in-browser (WASM) in the full
             build. This static demo shows the UX.
@@ -98,7 +98,7 @@ export function Playground() {
           <div className="flex gap-3">
             <button
               onClick={() => setStepIndex((i) => Math.max(0, i - 1))}
-              className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] disabled:cursor-not-allowed disabled:border-[color:var(--panel-border)] disabled:opacity-50"
+              className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)] disabled:cursor-not-allowed disabled:border-[var(--panel-border)] disabled:opacity-50"
               disabled={stepIndex === 0}
             >
               Prev
@@ -107,20 +107,20 @@ export function Playground() {
               onClick={() =>
                 setStepIndex((i) => Math.min(sampleSteps.length - 1, i + 1))
               }
-              className="rounded-full bg-[color:var(--accent)] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-full bg-[var(--accent)] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={stepIndex === sampleSteps.length - 1}
             >
               Next
             </button>
           </div>
-          <div className="surface-ghost rounded-xl p-4 text-sm text-[color:var(--foreground)]">
+          <div className="surface-ghost rounded-xl p-4 text-sm text-[var(--foreground)]">
             <div className="font-mono text-xs text-blue-700 dark:text-blue-100">
               {current.line}
             </div>
-            <p className="mt-2 text-[color:var(--muted)]">{current.note}</p>
+            <p className="mt-2 text-[var(--muted)]">{current.note}</p>
           </div>
         </div>
-        <div className="flex-1 space-y-4 text-[color:var(--foreground)]">
+        <div className="flex-1 space-y-4 text-[var(--foreground)]">
           <MemoryPanel title="Stack" cells={current.stack} accent="blue" />
           <MemoryPanel title="Heap" cells={current.heap} accent="emerald" />
           <MemoryPanel
@@ -161,14 +161,14 @@ function MemoryPanel({
 
   return (
     <div className="surface-ghost rounded-xl p-4">
-      <div className="flex items-center justify-between text-sm text-[color:var(--foreground)]">
+      <div className="flex items-center justify-between text-sm text-[var(--foreground)]">
         <span className="font-semibold">{title}</span>
-        <span className="text-xs text-[color:var(--muted)]">
+        <span className="text-xs text-[var(--muted)]">
           {cells.length ? `${cells.length} entries` : "empty"}
         </span>
       </div>
       {cells.length === 0 ? (
-        <div className="mt-3 rounded-lg border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--muted)]">
+        <div className="mt-3 rounded-lg border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2 text-xs text-[var(--muted)]">
           No allocations yet.
         </div>
       ) : (
@@ -177,7 +177,9 @@ function MemoryPanel({
             <div
               key={`${title}-${cell.label}-${cell.value}`}
               className={`flex items-center justify-between rounded-lg border px-3 py-2 text-sm shadow-sm ${accentColor[accent]} ${
-                cell.emphasis ? "ring-2 ring-[color:var(--accent)]/30" : ""
+                cell.emphasis
+                  ? "ring-2 ring-[color-mix(in srgb, var(--accent) 30%, transparent)]"
+                  : ""
               }`}
             >
               <span className="font-semibold">{cell.label}</span>

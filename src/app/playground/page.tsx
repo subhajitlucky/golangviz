@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
 import { Playground } from "@/components/playground";
@@ -7,7 +8,7 @@ import { SliceLab } from "@/components/visualizers/slice-lab";
 
 export default function PlaygroundPage() {
   return (
-    <div className="min-h-screen bg-[color:var(--background)] text-[color:var(--foreground)]">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
       <main className="space-y-6 pb-16">
         <Section
@@ -18,30 +19,30 @@ export default function PlaygroundPage() {
         >
           <div className="grid gap-4 lg:grid-cols-[1.2fr,0.8fr]">
             <div className="surface rounded-2xl p-5 shadow-md">
-              <div className="flex items-center justify-between text-sm text-[color:var(--muted)]">
-                <span className="font-semibold text-[color:var(--foreground)]">Mini Playground</span>
+              <div className="flex items-center justify-between text-sm text-[var(--muted)]">
+                <span className="font-semibold text-[var(--foreground)]">Mini Playground</span>
                 <span>Topic: stack vs heap, pointers</span>
               </div>
-              <p className="mt-2 text-sm text-[color:var(--muted)]">
+              <p className="mt-2 text-sm text-[var(--muted)]">
                 Step through a snippet; see variables and channels change frame by frame.
               </p>
-              <div className="mt-3 rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-3 transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="mt-3 rounded-xl border border-[var(--panel-border)] bg-[var(--panel)] p-3 transition hover:-translate-y-1 hover:shadow-lg">
                 <Playground />
               </div>
             </div>
             <div className="grid gap-3">
-              <div className="rounded-2xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 shadow-sm">
-                <div className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">Visual tips</div>
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-[color:var(--muted)]">
+              <div className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 shadow-sm">
+                <div className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Visual tips</div>
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-[var(--muted)]">
                   <li>Watch stack vs heap allocations: pointers that escape move to heap.</li>
                   <li>Look for len/cap changes in slices; sharing happens until a resize.</li>
                   <li>Channels: blocked sends/receives light up; buffered vs unbuffered behavior differs.</li>
                   <li>Scheduler: goroutines move runnable → running → waiting; Ps own run queues.</li>
                 </ul>
               </div>
-              <div className="rounded-2xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 shadow-sm">
-                <div className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">Try these snippets</div>
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-[color:var(--muted)]">
+              <div className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 shadow-sm">
+                <div className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Try these snippets</div>
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-[var(--muted)]">
                   <li>Pointer + escape: take address of a local; see heap allocation.</li>
                   <li>Slice growth: append in a loop; watch cap double.</li>
                   <li>Channel buffering: make(chan int, 2); send thrice; see blocked send.</li>
@@ -58,8 +59,8 @@ export default function PlaygroundPage() {
           title="Channel debugger"
           description="Visualize buffered vs unbuffered channels, blocking sends/receives, and event timeline."
         >
-          <div className="rounded-2xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-            <div className="text-sm text-[color:var(--muted)] mb-2">
+          <div className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div className="text-sm text-[var(--muted)] mb-2">
               Topic: channel queues, blocking, select readiness
             </div>
             <ChannelVisualizer />
@@ -72,8 +73,8 @@ export default function PlaygroundPage() {
           title="G/M/P scheduler view"
           description="See goroutines across Ps, run queues, and waiting states. Dispatch, spawn, and park to watch transitions."
         >
-          <div className="rounded-2xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-            <div className="text-sm text-[color:var(--muted)] mb-2">
+          <div className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div className="text-sm text-[var(--muted)] mb-2">
               Topic: goroutines, work stealing, runnable vs waiting
             </div>
             <SchedulerVisualizer />
@@ -86,14 +87,15 @@ export default function PlaygroundPage() {
           title="Slice growth lab"
           description="Append and watch len/cap, generation changes, and sharing behavior."
         >
-          <div className="rounded-2xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-            <div className="text-sm text-[color:var(--muted)] mb-2">
+          <div className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div className="text-sm text-[var(--muted)] mb-2">
               Topic: slice header, backing array, reallocation
             </div>
             <SliceLab />
           </div>
         </Section>
       </main>
+      <Footer />
     </div>
   );
 }

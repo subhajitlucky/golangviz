@@ -1,4 +1,5 @@
 import { FeatureGrid } from "@/components/feature-grid";
+import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
@@ -38,7 +39,7 @@ const coreFeatures = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[color:var(--background)] text-[color:var(--foreground)]">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
       <main className="space-y-4 pb-20">
         <Hero />
@@ -61,19 +62,21 @@ export default function Home() {
           <div className="flex flex-wrap gap-3">
             <a
               href="/playground"
-              className="rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5"
+              className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
+              aria-label="Open playground"
             >
               Open playground
             </a>
             <a
               href="/path"
-              className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-5 py-3 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)]"
+              className="rounded-full border border-[var(--panel-border)] bg-[var(--panel)] px-5 py-3 text-sm font-semibold text-[var(--foreground)] transition hover:border-[var(--accent)]"
             >
               View concepts
             </a>
           </div>
         </Section>
       </main>
+      <Footer />
     </div>
   );
 }

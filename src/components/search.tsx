@@ -66,7 +66,7 @@ export function KnowledgeSearch() {
   }, [query]);
 
   return (
-    <div className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10 text-[color:var(--foreground)]">
+    <div className="surface rounded-2xl p-5 shadow-lg shadow-blue-500/10 text-[var(--foreground)]">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-blue-700 dark:text-blue-200">
@@ -75,7 +75,7 @@ export function KnowledgeSearch() {
           <h3 className="text-lg font-semibold">
             Search topics, labs, and chapters
           </h3>
-          <p className="text-sm text-[color:var(--muted)]">
+          <p className="text-sm text-[var(--muted)]">
             Client-side filter now; hook to a static index or edge search later.
           </p>
         </div>
@@ -83,7 +83,7 @@ export function KnowledgeSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search e.g. channels, escape, GC..."
-          className="w-full rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-4 py-3 text-sm text-[color:var(--foreground)] shadow-inner focus:border-blue-400 focus:outline-none md:w-80"
+          className="w-full rounded-xl border border-[var(--panel-border)] bg-[var(--panel)] px-4 py-3 text-sm text-[var(--foreground)] shadow-inner focus:border-blue-400 focus:outline-none md:w-80"
         />
       </div>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
@@ -91,15 +91,15 @@ export function KnowledgeSearch() {
           <a
             key={topic.title}
             href={topic.href}
-            className="surface-ghost rounded-xl p-4 text-sm text-[color:var(--foreground)] transition hover:-translate-y-1"
+            className="surface-ghost rounded-xl p-4 text-sm text-[var(--foreground)] transition hover:-translate-y-1"
           >
             <div className="flex items-center justify-between">
               <span className="text-white">{topic.title}</span>
-              <span className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-1 text-[11px] uppercase text-[color:var(--muted)]">
+              <span className="rounded-full border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-1 text-[11px] uppercase text-[var(--muted)]">
                 {topic.category}
               </span>
             </div>
-            <p className="mt-1 text-[color:var(--muted)]">{topic.summary}</p>
+            <p className="mt-1 text-[var(--muted)]">{topic.summary}</p>
             <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
               {topic.tags.map((tag) => (
                 <span
@@ -113,7 +113,7 @@ export function KnowledgeSearch() {
           </a>
         ))}
         {results.length === 0 ? (
-          <div className="surface-ghost rounded-xl p-4 text-sm text-[color:var(--muted)]">
+          <div className="surface-ghost rounded-xl p-4 text-sm text-[var(--muted)]">
             No results. Try a different keyword (e.g., “gc”, “pointers”).
           </div>
         ) : null}

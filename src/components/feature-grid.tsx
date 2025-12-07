@@ -20,10 +20,10 @@ export function FeatureGrid({ features }: FeatureGridProps) {
             <span className="h-2 w-2 rounded-full bg-blue-400" />
             {feature.badge ?? "Interactive"}
           </div>
-          <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
+          <h3 className="text-lg font-semibold text-[var(--foreground)]">
             {feature.title}
           </h3>
-          <p className="mt-2 text-sm text-[color:var(--muted)]">
+          <p className="mt-2 text-sm text-[var(--muted)]">
             {feature.description}
           </p>
         </div>

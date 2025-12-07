@@ -78,7 +78,7 @@ export function SchedulerVisualizer() {
 
   return (
     <div className="surface rounded-2xl p-5 shadow-lg shadow-purple-500/10">
-      <div className="flex items-center justify-between text-[color:var(--foreground)]">
+      <div className="flex items-center justify-between text-[var(--foreground)]">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-purple-700 dark:text-purple-200">
             Scheduler
@@ -86,7 +86,7 @@ export function SchedulerVisualizer() {
           <h3 className="text-lg font-semibold">
             Goroutine / M:N Scheduler View
           </h3>
-          <p className="text-sm text-[color:var(--muted)]">
+          <p className="text-sm text-[var(--muted)]">
             Visualize Ps, run queues, runnable vs waiting goroutines, and
             dispatch/steal.
           </p>
@@ -94,19 +94,19 @@ export function SchedulerVisualizer() {
         <div className="flex gap-2 text-xs">
           <button
             onClick={spawn}
-            className="rounded-full bg-[color:var(--accent)] px-3 py-2 font-semibold text-white shadow"
+            className="rounded-full bg-[var(--accent)] px-3 py-2 font-semibold text-white shadow"
           >
             Spawn
           </button>
           <button
             onClick={dispatch}
-            className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 font-semibold text-[color:var(--foreground)]"
+            className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-3 py-2 font-semibold text-[var(--foreground)]"
           >
             Dispatch
           </button>
           <button
             onClick={steal}
-            className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-3 py-2 font-semibold text-[color:var(--foreground)]"
+            className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-3 py-2 font-semibold text-[var(--foreground)]"
           >
             Work Steal
           </button>
@@ -115,9 +115,9 @@ export function SchedulerVisualizer() {
 
       <div className="mt-4 grid gap-4 md:grid-cols-[1.1fr,0.9fr]">
         <div className="surface-ghost rounded-xl p-4">
-          <div className="flex items-center justify-between text-sm text-[color:var(--foreground)]">
+          <div className="flex items-center justify-between text-sm text-[var(--foreground)]">
             <span className="font-semibold">Processors (P)</span>
-            <span className="text-xs text-[color:var(--muted)]">
+            <span className="text-xs text-[var(--muted)]">
               {processors} Ps
             </span>
           </div>
@@ -137,19 +137,19 @@ export function SchedulerVisualizer() {
                       {running ? "running" : "idle"}
                     </span>
                   </div>
-                  <div className="mt-2 rounded-md border border-[color:var(--panel-border)] bg-[color:var(--panel)] px-3 py-2 text-[color:var(--foreground)]">
+                  <div className="mt-2 rounded-md border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2 text-[var(--foreground)]">
                     {running ? (
                       <div className="flex items-center justify-between">
                         <span>G{running.id}</span>
                         <button
                           onClick={() => park(running.id)}
-                          className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-2 py-1 text-[11px] text-[color:var(--foreground)]"
+                          className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-2 py-1 text-[11px] text-[var(--foreground)]"
                         >
                           Park
                         </button>
                       </div>
                     ) : (
-                      <span className="text-[color:var(--muted)]">
+                      <span className="text-[var(--muted)]">
                         no goroutine
                       </span>
                     )}
@@ -170,7 +170,7 @@ export function SchedulerVisualizer() {
                 <span>G{g.id}</span>
                 <button
                   onClick={() => makeRunnable(g.id)}
-                  className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-2 py-1 text-[11px] text-[color:var(--foreground)]"
+                  className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-2 py-1 text-[11px] text-[var(--foreground)]"
                 >
                   keep runnable
                 </button>
@@ -186,7 +186,7 @@ export function SchedulerVisualizer() {
                 <span>G{g.id}</span>
                 <button
                   onClick={() => makeRunnable(g.id)}
-                  className="rounded-full border border-[color:var(--panel-border)] bg-[color:var(--background)] px-2 py-1 text-[11px] text-[color:var(--foreground)]"
+                  className="rounded-full border border-[var(--panel-border)] bg-[var(--background)] px-2 py-1 text-[11px] text-[var(--foreground)]"
                 >
                   Wake
                 </button>
@@ -216,9 +216,9 @@ function QueueCard({
       : "border-amber-400/30 bg-amber-500/5 text-amber-100";
   return (
     <div className="surface-ghost rounded-xl p-4">
-      <div className="flex items-center justify-between text-sm text-[color:var(--foreground)]">
+      <div className="flex items-center justify-between text-sm text-[var(--foreground)]">
         <span className="font-semibold">{title}</span>
-        <span className="text-xs text-[color:var(--muted)]">
+        <span className="text-xs text-[var(--muted)]">
           {items.length || "empty"}
         </span>
       </div>
@@ -226,7 +226,7 @@ function QueueCard({
         className={`mt-3 rounded-lg border px-3 py-3 text-sm shadow-sm ${palette}`}
       >
         {items.length === 0 ? (
-          <div className="text-[color:var(--muted)]">No goroutines here.</div>
+          <div className="text-[var(--muted)]">No goroutines here.</div>
         ) : (
           <div className="space-y-2">{children}</div>
         )}

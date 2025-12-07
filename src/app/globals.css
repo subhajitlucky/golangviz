@@ -44,7 +44,7 @@ body {
 }
 
 a {
-  color: var(--accent);
+  color: inherit;
 }
 
 code {
