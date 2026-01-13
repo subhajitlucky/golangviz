@@ -19,6 +19,7 @@ const levels: ConceptLevel[] = [
       },
       {
         title: "Installation & Setup",
+        href: "/concepts/installation-and-setup",
         bullets: ["Install Go; go version; go env", "VSCode / GoLand setup", "$GOROOT and $GOPATH"],
       },
     ],
@@ -28,11 +29,31 @@ const levels: ConceptLevel[] = [
     badge: "🟡 Level 1 — Fundamentals",
     blurb: "Hello World, syntax, vars, types, constants.",
     concepts: [
-      { title: "Hello World", bullets: ["package main", "func main()", "fmt.Println"] },
-      { title: "Basic Syntax", bullets: ["Packages & imports", "Comments", "Naming conventions"] },
-      { title: "Variables", bullets: ["var declarations", "Short := ", "Zero values", "Typed vs untyped constants"] },
-      { title: "Basic Types", bullets: ["ints, floats, complex", "string (immutable)", "bool", "byte, rune"] },
-      { title: "Constants", bullets: ["const", "iota", "Typed & untyped"] },
+      {
+        title: "Hello World",
+        href: "/concepts/hello-world",
+        bullets: ["package main", "func main()", "fmt.Println"],
+      },
+      {
+        title: "Basic Syntax",
+        href: "/concepts/basic-syntax",
+        bullets: ["Packages & imports", "Comments", "Naming conventions"],
+      },
+      {
+        title: "Variables",
+        href: "/concepts/variables",
+        bullets: ["var declarations", "Short := ", "Zero values", "Typed vs untyped constants"],
+      },
+      {
+        title: "Basic Types",
+        href: "/concepts/basic-types",
+        bullets: ["ints, floats, complex", "string (immutable)", "bool", "byte, rune"],
+      },
+      {
+        title: "Constants",
+        href: "/concepts/constants",
+        bullets: ["const", "iota", "Typed & untyped"],
+      },
     ],
   },
   {
