@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const constantQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "When are constant values determined in Go?",
+    choices: [
+      "At runtime",
+      "During compilation",
+      "When the function is first called",
+      "When the package is imported"
+    ],
+    answer: 1,
+    explanation: "Constants in Go must be values that the compiler can determine at compile time."
+  },
+  {
+    id: 2,
+    question: "What is 'iota' used for in Go?",
+    choices: [
+      "Defining complex numbers",
+      "Creating a sequence of related constant values",
+      "Looping through a slice",
+      "Handling errors in async functions"
+    ],
+    answer: 1,
+    explanation: "'iota' is a special predeclared identifier that simplifies definitions of increments of numbers in constant declarations."
+  },
+  {
+    id: 3,
+    question: "Which keyword is used to declare a constant?",
+    choices: [
+      "var",
+      "let",
+      "final",
+      "const"
+    ],
+    answer: 3,
+    explanation: "Go uses the 'const' keyword for declaring constant values."
+  }
+];
 
 export default function Constants() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="const"
           kicker="Concept"
@@ -69,22 +110,8 @@ const IsTrue = true`}
             </div>
           </div>
         </Section>
-
-        <Section
-          id="next"
-          kicker="Next Steps"
-          title="Level Complete!"
-          description="You've finished the fundamentals."
-        >
-          <div className="flex justify-center">
-            <Link
-              href="/path"
-              className="rounded-full bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
-            >
-              Back to Path
-            </Link>
-          </div>
-        </Section>
+        <QuizCards quizzes={constantQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>

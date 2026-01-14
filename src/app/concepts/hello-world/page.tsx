@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const helloQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "What is the special name for the entry point package in Go?",
+    choices: [
+      "start",
+      "root",
+      "main",
+      "init"
+    ],
+    answer: 2,
+    explanation: "Every executable Go program must have a package named 'main' which contains the main() function."
+  },
+  {
+    id: 2,
+    question: "How do you run a Go file without creating a permanent binary?",
+    choices: [
+      "go build",
+      "go run",
+      "go exec",
+      "go start"
+    ],
+    answer: 1,
+    explanation: "'go run' compiles and executes the program in a temporary directory and cleans up afterwards."
+  },
+  {
+    id: 3,
+    question: "Which standard library package is used for formatted I/O like printing?",
+    choices: [
+      "io",
+      "print",
+      "fmt",
+      "log"
+    ],
+    answer: 2,
+    explanation: "The 'fmt' package implements formatted I/O with functions analogous to C's printf and scanf."
+  }
+];
 
 export default function HelloWorld() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="hello"
           kicker="Concept"
@@ -74,22 +115,8 @@ func main() {
             </div>
           </div>
         </Section>
-
-        <Section
-          id="next"
-          kicker="Next Steps"
-          title="Onwards"
-          description="Ready to learn about syntax?"
-        >
-          <div className="flex justify-center">
-            <Link
-              href="/concepts/basic-syntax"
-              className="rounded-full bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
-            >
-              Next: Basic Syntax
-            </Link>
-          </div>
-        </Section>
+        <QuizCards quizzes={helloQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>

@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const installQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "What is the purpose of the 'go env' command?",
+    choices: [
+      "To install a new Go environment",
+      "To list all Go-related environment variables",
+      "To delete temporary build files",
+      "To update the Go compiler"
+    ],
+    answer: 1,
+    explanation: "'go env' prints Go environment information, such as GOPATH, GOROOT, and target OS/architecture."
+  },
+  {
+    id: 2,
+    question: "Which environment variable points to the Go SDK installation directory?",
+    choices: [
+      "GOPATH",
+      "GOWORK",
+      "GOROOT",
+      "GOBIN"
+    ],
+    answer: 2,
+    explanation: "GOROOT points to the directory where the Go SDK is installed. It's usually set automatically by the installer."
+  },
+  {
+    id: 3,
+    question: "Where do binaries installed via 'go install' usually land?",
+    choices: [
+      "/usr/local/bin",
+      "$GOPATH/bin",
+      "./bin",
+      "$GOROOT/bin"
+    ],
+    answer: 1,
+    explanation: "By default, 'go install' places executable binaries in the bin subdirectory of the directory named by the GOPATH environment variable."
+  }
+];
 
 export default function InstallationAndSetup() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="download"
           kicker="Step 1"
@@ -121,22 +162,8 @@ export default function InstallationAndSetup() {
             </div>
           </div>
         </Section>
-
-        <Section
-          id="next"
-          kicker="Next Steps"
-          title="Ready to Code?"
-          description="Now that you're set up, let's write some Go."
-        >
-          <div className="flex justify-center">
-            <Link
-              href="/path"
-              className="rounded-full bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
-            >
-              Back to Concepts
-            </Link>
-          </div>
-        </Section>
+        <QuizCards quizzes={installQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>

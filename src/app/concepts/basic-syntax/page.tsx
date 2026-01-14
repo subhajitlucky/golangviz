@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const syntaxQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "In Go, how do you make a function or variable exported (public)?",
+    choices: [
+      "Use the 'public' keyword",
+      "Start the name with an Uppercase letter",
+      "Add an export comment",
+      "Declare it in a separate file"
+    ],
+    answer: 1,
+    explanation: "Go uses a simple rule for visibility: if a name starts with a capital letter, it is exported from the package."
+  },
+  {
+    id: 2,
+    question: "Can multiple files in the same directory belong to different packages?",
+    choices: [
+      "Yes, as long as they are in different subfolders",
+      "No, all files in a directory must share the same package name",
+      "Only if they are testing files",
+      "Yes, if they use the 'import' keyword"
+    ],
+    answer: 1,
+    explanation: "All Go files within a single directory must declare the same package name."
+  },
+  {
+    id: 3,
+    question: "Which naming convention is preferred in Go?",
+    choices: [
+      "snake_case",
+      "PascalCase for everything",
+      "MixedCaps (CamelCase)",
+      "kebab-case"
+    ],
+    answer: 2,
+    explanation: "Go uses MixedCaps or mixedCaps (CamelCase) for multi-word names, following the visibility rule for the first letter."
+  }
+];
 
 export default function BasicSyntax() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="packages"
           kicker="Concept"
@@ -93,22 +134,8 @@ import (
             </div>
           </div>
         </Section>
-
-        <Section
-          id="next"
-          kicker="Next Steps"
-          title="Variables"
-          description="Let's store some data."
-        >
-          <div className="flex justify-center">
-            <Link
-              href="/concepts/variables"
-              className="rounded-full bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
-            >
-              Next: Variables
-            </Link>
-          </div>
-        </Section>
+        <QuizCards quizzes={syntaxQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>

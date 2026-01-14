@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const variableQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "Where can the short declaration operator (:=) be used?",
+    choices: [
+      "Anywhere in the file",
+      "Only at the package level",
+      "Only inside function bodies",
+      "Only for constant values"
+    ],
+    answer: 2,
+    explanation: "The short declaration operator (:=) is only available inside functions. At the package level, you must use the 'var' keyword."
+  },
+  {
+    id: 2,
+    question: "What is the 'zero value' for a numeric type in Go?",
+    choices: [
+      "nil",
+      "null",
+      "0",
+      "undefined"
+    ],
+    answer: 2,
+    explanation: "Numeric types in Go are initialized to 0 by default if no value is provided."
+  },
+  {
+    id: 3,
+    question: "What happens if you declare a local variable but don't use it?",
+    choices: [
+      "It stays in memory until GC runs",
+      "The program runs but with a warning",
+      "The code fails to compile",
+      "It is automatically deleted"
+    ],
+    answer: 2,
+    explanation: "Go enforces a strict rule where all local variables must be used, or the compiler will throw an error."
+  }
+];
 
 export default function Variables() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="declaration"
           kicker="Concept"
@@ -87,22 +128,8 @@ var c = true // Type inferred`}
             </div>
           </div>
         </Section>
-
-        <Section
-          id="next"
-          kicker="Next Steps"
-          title="Basic Types"
-          description="What kinds of data can we store?"
-        >
-          <div className="flex justify-center">
-            <Link
-              href="/concepts/basic-types"
-              className="rounded-full bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
-            >
-              Next: Basic Types
-            </Link>
-          </div>
-        </Section>
+        <QuizCards quizzes={variableQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>

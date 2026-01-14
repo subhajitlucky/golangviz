@@ -2,57 +2,25 @@
 
 import { useState } from "react";
 
-type Quiz = {
-  id: number;
+export type Quiz = {
+  id: string | number;
   question: string;
   choices: string[];
   answer: number;
   explanation: string;
 };
 
-const quizzes: Quiz[] = [
-  {
-    id: 1,
-    question: "When does a value typically escape to the heap?",
-    choices: [
-      "When its address leaks beyond the stack frame",
-      "Whenever it is larger than 64 bytes",
-      "All values live on the heap by default",
-      "Only when using goroutines",
-    ],
-    answer: 0,
-    explanation:
-      "Escape analysis moves values to heap when their address/reference outlives the stack frame.",
-  },
-  {
-    id: 2,
-    question: "What happens when sending to a full buffered channel?",
-    choices: [
-      "Send panics immediately",
-      "Send blocks until space frees",
-      "Send drops the oldest value",
-      "Send overwrites the last value",
-    ],
-    answer: 1,
-    explanation:
-      "Sends to a full buffered channel block until a receiver makes room (unless select chooses a default).",
-  },
-  {
-    id: 3,
-    question: "How are interface values represented?",
-    choices: [
-      "Single pointer to data",
-      "Struct of { itab*, data* }",
-      "Slice header (ptr, len, cap)",
-      "Map bucket with type IDs",
-    ],
-    answer: 1,
-    explanation:
-      "Interfaces are fat pointers: itab/type info pointer + data pointer (or data inline for some cases).",
-  },
-];
+interface QuizCardsProps {
+  quizzes: Quiz[];
+  title?: string;
+  description?: string;
+}
 
-export function QuizCards() {
+export function QuizCards({ 
+  quizzes, 
+  title = "Quick checks for understanding",
+  description = "Multiple-choice with inline explanations—expand to see why."
+}: QuizCardsProps) {
   return (
     <div className="surface rounded-2xl p-5 shadow-lg shadow-amber-500/10">
       <div className="flex flex-col gap-2">
@@ -60,13 +28,13 @@ export function QuizCards() {
           Quizzes
         </p>
         <h3 className="text-lg font-semibold text-[var(--foreground)] dark:text-white">
-          Quick checks for understanding
+          {title}
         </h3>
         <p className="text-sm text-[var(--muted)]">
-          Multiple-choice with inline explanations—expand to see why.
+          {description}
         </p>
       </div>
-      <div className="mt-4 grid gap-3 md:grid-cols-3">
+      <div className="mt-4 grid gap-3 md:grid-cols-1 lg:grid-cols-3">
         {quizzes.map((quiz) => (
           <QuizCard key={quiz.id} quiz={quiz} />
         ))}
@@ -114,4 +82,3 @@ function QuizCard({ quiz }: { quiz: Quiz }) {
     </div>
   );
 }
-

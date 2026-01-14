@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const typeQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "What is a 'rune' in Go?",
+    choices: [
+      "A special type for memory addresses",
+      "An alias for int32 representing a Unicode code point",
+      "A boolean value",
+      "A way to define custom structs"
+    ],
+    answer: 1,
+    explanation: "A rune is an alias for int32 and is used to represent individual Unicode characters."
+  },
+  {
+    id: 2,
+    question: "Which floating-point type is the default when using short declaration (:=)?",
+    choices: [
+      "float16",
+      "float32",
+      "float64",
+      "float128"
+    ],
+    answer: 2,
+    explanation: "Go defaults to float64 for floating-point values when the type is not explicitly specified."
+  },
+  {
+    id: 3,
+    question: "Are strings in Go mutable or immutable?",
+    choices: [
+      "Mutable (can be changed in place)",
+      "Immutable (cannot be changed once created)",
+      "Depends on how they are declared",
+      "Only mutable if they are local variables"
+    ],
+    answer: 1,
+    explanation: "Strings in Go are immutable. Any 'modification' actually creates a new string."
+  }
+];
 
 export default function BasicTypes() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="numbers"
           kicker="Concept"
@@ -81,22 +122,8 @@ export default function BasicTypes() {
             </div>
           </div>
         </Section>
-
-        <Section
-          id="next"
-          kicker="Next Steps"
-          title="Constants"
-          description="Fixed values that never change."
-        >
-          <div className="flex justify-center">
-            <Link
-              href="/concepts/constants"
-              className="rounded-full bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white !text-white shadow-md transition hover:-translate-y-0.5"
-            >
-              Next: Constants
-            </Link>
-          </div>
-        </Section>
+        <QuizCards quizzes={typeQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>

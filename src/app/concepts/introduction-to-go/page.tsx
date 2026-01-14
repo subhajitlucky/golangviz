@@ -1,13 +1,54 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Section } from "@/components/section";
+import { ConceptNavigation } from "@/components/concept-navigation";
+import { QuizCards, Quiz } from "@/components/quiz-cards";
 import Link from "next/link";
+
+const introQuizzes: Quiz[] = [
+  {
+    id: 1,
+    question: "What happens when you run 'go build'?",
+    choices: [
+      "It interprets the code line by line",
+      "It creates a standalone static binary",
+      "It generates a Java-like bytecode file",
+      "It only checks for syntax errors"
+    ],
+    answer: 1,
+    explanation: "Go is a compiled language that produces a single, statically-linked binary with no external dependencies."
+  },
+  {
+    id: 2,
+    question: "Which tool is used to automatically format Go code?",
+    choices: [
+      "go lint",
+      "go format",
+      "go fmt",
+      "go vet"
+    ],
+    answer: 2,
+    explanation: "'go fmt' is the standard tool that enforces a consistent coding style across all Go projects."
+  },
+  {
+    id: 3,
+    question: "What is the primary purpose of Go Modules?",
+    choices: [
+      "To organize code into folders",
+      "To manage external dependencies and versions",
+      "To speed up the compiler",
+      "To enable goroutines"
+    ],
+    answer: 1,
+    explanation: "Go Modules (go.mod) provide a robust way to manage project dependencies and ensure reproducible builds."
+  }
+];
 
 export default function IntroToGo() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navigation />
-      <main className="space-y-6 pb-16">
+      <main className="max-w-4xl mx-auto px-4 space-y-6 pb-16">
         <Section
           id="intro"
           kicker="Concept"
@@ -128,6 +169,8 @@ func main() {
             <li>Open the homepage mini-playground and paste Hello Go; step through.</li>
           </ul>
         </Section>
+        <QuizCards quizzes={introQuizzes} />
+        <ConceptNavigation />
       </main>
       <Footer />
     </div>
